@@ -9,6 +9,6 @@ $twig = new Twig_Environment($loader, array(
 	'auto_reload' => true,
 ));
 
-$value = Yaml::parseFile('./test.yaml');
+$elements = Yaml::parseFile('./test.yaml');
 
-echo $twig->render('form.html', array('elements' => $value));
+echo $twig->render('form.html', array('elements' => $elements));
