@@ -1,0 +1,21 @@
+<form{$form.attributes}>
+{$form.hidden}
+{% for item in elements.element %}
+    {% if item.type not in ['submit'] %}
+    <div>
+        {if $form.{{ item.name }}.error}エラー{/if}
+        {$form.{{ item.name }}.label}
+        {$form.{{ item.name }}.error}
+        {$form.{{ item.name }}.html}
+    </div>
+    {% endif %}
+{% endfor %}
+<div>
+{if !$form.frozen}
+    {$form.btn_submit.html}
+{else}
+    {$form.btn_back.html}
+    {$form.btn_submit.html}
+{/if}
+</div>
+</form>

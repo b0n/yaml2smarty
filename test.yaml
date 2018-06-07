@@ -1,0 +1,183 @@
+---
+state: &state
+  '': 選択してください
+  1: 北海道
+  2: 青森県
+  3: 岩手県
+  4: 宮城県
+  5: 秋田県
+  6: 山形県
+  7: 福島県
+  8: 茨城県
+  9: 栃木県
+  10: 群馬県
+  11: 埼玉県
+  12: 千葉県
+  13: 東京都
+  14: 神奈川県
+  15: 新潟県
+  16: 富山県
+  17: 石川県
+  18: 福井県
+  19: 山梨県
+  20: 長野県
+  21: 岐阜県
+  22: 静岡県
+  23: 愛知県
+  24: 三重県
+  25: 滋賀県
+  26: 京都府
+  27: 大阪府
+  28: 兵庫県
+  29: 奈良県
+  30: 和歌山県
+  31: 鳥取県
+  32: 島根県
+  33: 岡山県
+  34: 広島県
+  35: 山口県
+  36: 徳島県
+  37: 香川県
+  38: 愛媛県
+  39: 高知県
+  40: 福岡県
+  41: 佐賀県
+  42: 長崎県
+  43: 熊本県
+  44: 大分県
+  45: 宮崎県
+  46: 鹿児島県
+  47: 沖縄県
+
+type: &type
+  a: はり・きゅう・マッサージについて
+  b: 保険お取り扱いについて
+  c: ご入会について
+  d: ご意見・ご要望・その他
+
+element:
+  - 
+    type: text
+    name: name
+    label: お名前
+    attribute: class="form-control"
+    rule: 
+      -
+        type: required
+        error_message: 名前を入力してください
+  - 
+    type: text
+    name: furi
+    label: ふりがな
+    attribute: class="form-control"
+    rule: 
+      -
+        type: required
+        error_message: ふりがなを入力してください
+  - 
+    type: text
+    name: email
+    label: メールアドレス
+    attribute: class="form-control"
+    rule: 
+      -
+        error_message: メールアドレスを入力してください
+        type: required
+      -
+        error_message: 正しいメールアドレスを入力してください
+        type: regex
+        format: /^((\"[^\"\f\n\r\t\v\b]+\")|([\w\!\#\$\%\&\'\*\+\-\~\/\^\`\|\{\}]+([\.\w\!\#\$\%\&\'\*\+\-\~\/\^\`\|\{\}]+)*))@((\[(((25[0-5])|(2[0-4][0-9])|([0-1]?[0-9]?[0-9]))\.((25[0-5])|(2[0-4][0-9])|([0-1]?[0-9]?[0-9]))\.((25[0-5])|(2[0-4][0-9])|([0-1]?[0-9]?[0-9]))\.((25[0-5])|(2[0-4][0-9])|([0-1]?[0-9]?[0-9])))\])|(((25[0-5])|(2[0-4][0-9])|([0-1]?[0-9]?[0-9]))\.((25[0-5])|(2[0-4][0-9])|([0-1]?[0-9]?[0-9]))\.((25[0-5])|(2[0-4][0-9])|([0-1]?[0-9]?[0-9]))\.((25[0-5])|(2[0-4][0-9])|([0-1]?[0-9]?[0-9])))|((([A-Za-z0-9\-])+\.)+[A-Za-z\-]+))$/
+  -
+    type: text
+    name: zip
+    label: 郵便番号
+    attribute: class="form-control"
+    rule: 
+      -
+        type: required
+        error_message: 郵便番号を入力してください
+      -
+        type: numeric
+        error_message: 郵便番号を数字で入力してください
+  - 
+    type: select
+    name: state
+    label: 都道府県
+    value: *state
+    attribute: class="custom-select"
+    rule: 
+      -
+        type: required
+        error_message: 都道府県を選択してください
+  -
+    type: text
+    name: adr1
+    label: 市区町村
+    attribute: class="form-control"
+    rule: 
+      -
+        type: required
+        error_message: 市区町村を入力してください
+  -
+    type: text
+    name: adr2
+    label: 番地・マンション名
+    attribute: class="form-control"
+    rule: 
+      -
+        type: required
+        error_message: 番地・マンション名を入力してください
+  - 
+    type: text
+    name: tel
+    label: 電話番号
+    attribute: class="form-control"
+    rule: 
+      -
+        error_message: 電話番号を入力してください
+        type: required
+      -
+        error_message: 正しい電話番号を入力してください
+        type: regex
+        format: /^(0\d{1,4}[\s-]?\d{1,4}[\s-]?\d{4})$/
+  - 
+    type: radio
+    name: type
+    label: お問い合わせの種類
+    attribute: class="custom-control-input"
+    value: *type
+    rule:
+      -
+        error_message: お問い合わせの種類を選択してください
+        type: required
+  - 
+    type: textarea
+    name: detail
+    label: お問い合わせの内容
+    attribute: class="custom-control-input"
+    rule:
+      -
+        error_message: お問い合わせの内容を入力してください
+        type: required
+  - 
+    type: checkbox
+    name: policy
+    text: プライバシーポリシーに同意する
+    attribute: class="custom-control-input" id="policy"
+    rule: 
+      -
+        type: required
+        error_message: 同意いただけなければお問い合わせはできません
+  -
+    type: submit
+    name: btn_submit
+    value: 確認する
+  -
+    type: submit
+    name: btn_back
+    value: 修正する
+  -
+    type: submit
+    name: btn_submit
+    value: 送信する
+
